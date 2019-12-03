@@ -2,12 +2,14 @@
 
 namespace chip8 {
 
-    Chip8::Chip8()
+    Chip8::Chip8() : I(0), delayTimer(0), soundTimer(0), pc(nullptr)
     {
         for (auto& i : memory) {
             i = 0;
         }
-        pc = nullptr;
+        for (auto& i : stack) {
+            i = 0;
+        }
     }
 
     void Chip8::loadRom(const std::string& loadFile)
@@ -52,6 +54,7 @@ namespace chip8 {
         if (MAX_MEMORY_SIZE - START_OF_CHIP_PROGRAM > instructions.size()) {
             for (int i = 0; i < instructions.size(); ++i) {
                 memory[START_OF_CHIP_PROGRAM + i] = instructions[i];
+                std::printf("%04x\n", instructions[i]);
             }
             pc = &memory[START_OF_CHIP_PROGRAM]; // set program counter
         }
