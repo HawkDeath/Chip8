@@ -1,8 +1,6 @@
 #ifndef CHIP8_H
 #define CHIP8_H
 
-#include "Rom.h"
-
 #include <array>
 #include <cstdio>
 #include <cstdint>
